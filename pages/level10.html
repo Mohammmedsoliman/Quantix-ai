@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 10: The Deepfake Duel</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+    <style>
+        /* Extra styling for the GAN visualizer in the sidebar */
+        .gan-preview {
+            width: 100%;
+            height: 150px;
+            background: #000;
+            border: 2px solid #334155;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .gan-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 2s ease-in-out;
+        }
+        #gen-image-clear { position: absolute; top:0; left:0; opacity: 0; }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: linear-gradient(45deg, #ec4899, #8b5cf6); color: #fff; border: none;">Level 10 (Final Boss)</div>
+            <h3>Generative Adversarial Networks (GANs)</h3>
+            <p>Build an AI that can generate realistic fake faces. You need two networks fighting each other: a <strong>Generator (Forger)</strong> and a <strong>Discriminator (Detective)</strong>.</p>
+            <p>Wire them so they learn from each other until the fakes are undetectable!</p>
+            
+            <div class="status-box">
+                <p>Architecture: <span id="connection-count" class="highlight">Incomplete</span></p>
+                
+                <div class="gan-preview">
+                    <img id="gen-image-noise" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnZlbnZ6MmR6ZnI2YjR6ZnI2YjR6ZnI2YjR6ZnI2YjR6ZnI2ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7aD2saalBwwftBIY/giphy.gif" alt="Noise">
+                    <img id="gen-image-clear" src="https://thispersondoesnotexist.com/image" alt="Generated Face">
+                </div>
+
+                <div class="training-metrics" id="metrics-panel" style="display: none;">
+                    <p>Epoch: <span id="epoch-count">0</span>/100</p>
+                    <p>Gen Loss: <span id="gen-loss">High</span> (Forger)</p>
+                    <p>Disc Loss: <span id="disc-loss">Low</span> (Detective)</p>
+                </div>
+                <p id="system-message" class="message pending">Set up the adversarial loop...</p>
+            </div>
+
+            <button id="train-btn" class="btn btn-primary" disabled>Start Adversarial Training</button>
+        </aside>
+
+        <main class="canvas-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div id="success-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #ec4899;">
+                    <h2>🤯 Nash Equilibrium Achieved!</h2>
+                    <p>You did it! The Generator became so good that the Discriminator is now guessing blindly (50% accuracy). You have successfully created a realistic Deepfake AI.</p>
+                    <p><strong>You have completed the QuantixAi Student Curriculum!</strong></p>
+                    <button class="btn btn-primary" onclick="location.href='level11.html'">Finish Game</button>
+                </div>
+            </div>
+
+            <div id="fail-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #ff5f56;">
+                    <h2>⚠️ Mode Collapse!</h2>
+                    <p id="fail-reason">The training failed.</p>
+                    <p><em>Hint: The Discriminator needs to see BOTH real images and fake images to learn the difference!</em></p>
+                    <button class="btn btn-outline" onclick="location.reload()" style="margin-top: 1rem;">Reset Networks</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script  type="module" src="../js/level10.js"></script>
+</body>
+</html>

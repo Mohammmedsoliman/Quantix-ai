@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Organization Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/dashboard-style.css">
+    <style>
+        /* ستايلات خاصة بصفحة الإعدادات */
+        .settings-layout {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: flex-start;
+        }
+        .settings-nav {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1.5rem;
+        }
+        .settings-tab {
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #94a3b8;
+            font-weight: 600;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .settings-tab:hover { background: rgba(255,255,255,0.05); color: #fff; }
+        .settings-tab.active { background: rgba(6, 182, 212, 0.1); color: #06b6d4; border-left: 3px solid #06b6d4; }
+        
+        .settings-content {
+            flex: 3;
+            padding: 2rem;
+            min-height: 500px;
+        }
+        .settings-section { display: none; animation: fadeIn 0.4s ease; }
+        .settings-section.active { display: block; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: #cbd5e1; font-size: 0.9rem; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 0.8rem; border-radius: 8px;
+            background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1);
+            color: #fff; font-family: inherit; box-sizing: border-box;
+        }
+        .form-group input:focus { outline: none; border-color: #06b6d4; }
+        
+        /* Toggle Switch */
+        .switch-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: rgba(0,0,0,0.15); border-radius: 8px; margin-bottom: 1rem; }
+        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .4s; border-radius: 20px; }
+        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #10b981; }
+        input:checked + .slider:before { transform: translateX(20px); }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        
+        <aside class="side-nav glass-panel">
+            <div class="logo-container">
+                <div class="logo">Quantix<span class="gradient-text">Ai</span></div>
+                <span class="badge">Instructor Mode</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li onclick="location.href='dashboard.html'" style="cursor: pointer;">📊 Overview</li>
+                <li onclick="location.href='roster.html'" style="cursor: pointer;">👥 Student Roster</li>
+                <li onclick="location.href='curriculum.html'" style="cursor: pointer;">🧠 Curriculum Manager</li>
+                <li class="active">⚙️ Organization Settings</li>
+            </ul>
+
+<div class="user-profile" style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: auto;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="avatar">👨‍🏫</div>
+                    <div>
+                        <h4 id="admin-name-display">Loading...</h4>
+                        <p class="text-muted">Lead Instructor</p>
+                    </div>
+                </div>
+                <button id="admin-logout-btn" style="background: rgba(255, 95, 86, 0.1); border: 1px solid #ff5f56; color: #ff5f56; border-radius: 8px; width: 35px; height: 35px; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.3s;" title="Sign Out" onmouseover="this.style.background='#ff5f56'; this.style.color='#fff';" onmouseout="this.style.background='rgba(255, 95, 86, 0.1)'; this.style.color='#ff5f56';">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div>
+                    <h1 class="page-title">Organization Settings</h1>
+                    <p class="subtitle">Manage platform configurations and global preferences.</p>
+                </div>
+                <div class="actions">
+                    <button class="btn-primary" onclick="window.saveSettings()">Save Changes</button>
+                </div>
+            </header>
+
+            <div class="settings-layout">
+                <div class="settings-nav glass-panel">
+                    <div class="settings-tab active" onclick="window.switchTab('general', this)">
+                        <span>🏢</span> General Profile
+                    </div>
+                    <div class="settings-tab" onclick="window.switchTab('security', this)">
+                        <span>🔒</span> Security & Access
+                    </div>
+                    <div class="settings-tab" onclick="window.switchTab('api', this)">
+                        <span>🔌</span> API Integrations
+                    </div>
+                    <div class="settings-tab" onclick="window.switchTab('danger', this)" style="color: #ff5f56; margin-top: auto;">
+                        <span>⚠️</span> Danger Zone
+                    </div>
+                </div>
+
+                <div class="settings-content glass-panel">
+                    
+                    <div id="tab-general" class="settings-section active">
+                        <h2 style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">General Profile</h2>
+                        
+                        <div class="form-group">
+                            <label>Organization / Cohort Name</label>
+                            <input type="text" id="org-name" value="AFAQ Cohort A">
+                        </div>
+                        <div class="form-group">
+                            <label>Instructor Email</label>
+                            <input type="email" id="admin-email" value="admin@quantixai.edu" disabled style="opacity: 0.7;">
+                            <small style="color: #94a3b8; font-size: 0.8rem;">Contact support to change root email.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Default Platform Language</label>
+                            <select id="org-lang">
+                                <option value="en">English (US)</option>
+                                <option value="ar">Arabic (EG)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="tab-security" class="settings-section">
+                        <h2 style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">Security & Access</h2>
+                        
+                        <div class="switch-container">
+                            <div>
+                                <h4 style="margin: 0;">Allow Open Registration</h4>
+                                <p style="color: #94a3b8; font-size: 0.85rem; margin: 5px 0 0 0;">Let new students sign up without an invite code.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="allow-reg" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="switch-container">
+                            <div>
+                                <h4 style="margin: 0;">Force Password Reset</h4>
+                                <p style="color: #94a3b8; font-size: 0.85rem; margin: 5px 0 0 0;">Require all students to change passwords on next login.</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="force-reset">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="tab-api" class="settings-section">
+                        <h2 style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">API Integrations</h2>
+                        <p style="color: #94a3b8; margin-bottom: 1.5rem;">Connect external tools or export data using these secure keys.</p>
+
+                        <div class="form-group">
+                            <label>Python Interpreter Endpoint</label>
+                            <input type="text" value="https://api.quantixai.com/v1/compile" readonly style="color: #06b6d4;">
+                        </div>
+                        <div class="form-group">
+                            <label>Master API Key</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="password" value="sk_test_51NxYz8Hkj..." readonly id="api-key-input">
+                                <button class="btn-outline" onclick="window.toggleApiKey()" id="eye-btn">👁️</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-danger" class="settings-section">
+                        <h2 style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; color: #ff5f56;">Danger Zone</h2>
+                        
+                        <div style="border: 1px solid #ff5f56; border-radius: 8px; padding: 1.5rem; background: rgba(255, 95, 86, 0.05);">
+                            <h4 style="margin-top: 0;">Wipe Student Data</h4>
+                            <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem;">This will permanently delete all progress, code snapshots, and logs for ALL students. This action cannot be undone.</p>
+                            <button class="btn-primary" style="background: #ff5f56; border-color: #ff5f56;" onclick="window.wipeDatabase()">Wipe Database</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script type="module" src="../../js/admin/settings.js"></script>
+</body>
+</html>

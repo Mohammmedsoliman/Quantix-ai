@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 6: The Vision Filter</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: rgba(39, 201, 63, 0.1); color: #27c93f; border-color: #27c93f;">Level 06 (Vision)</div>
+            <h3>The Autonomous Eye</h3>
+            <p>Your self-driving car's AI is struggling to stay in its lane because the raw camera feed has too much unnecessary detail (trees, clouds, cars).</p>
+            <p>Route the <strong>Raw Camera Feed</strong> through the correct <strong>Convolutional Filter</strong> to isolate the lane lines before sending it to the Steering AI.</p>
+            
+            <div class="status-box">
+                <p>Architecture: <span id="connection-count" class="highlight">Offline</span></p>
+                <div class="training-metrics" id="metrics-panel" style="display: none;">
+                    <p>Processing: <span id="epoch-count">Frame 0</span>/50</p>
+                    <p>Visibility: <span id="accuracy-score">0%</span></p>
+                    <p>Steering: <span id="loss-score">Erratic</span></p>
+                </div>
+                <p id="system-message" class="message pending">Awaiting filter selection...</p>
+            </div>
+
+            <button id="train-btn" class="btn btn-primary" disabled>Process Video Feed</button>
+        </aside>
+
+        <main class="canvas-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div id="success-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #27c93f;">
+                    <h2>🚗 Perfect Vision!</h2>
+                    <p>You used the <strong>Edge Detection</strong> filter! The AI can now clearly see the stark contrast of the white lane lines against the dark road. The car is driving safely.</p>
+                    <button class="btn btn-primary" onclick="location.href='level7.html'">Proceed to Level 7</button>
+                </div>
+            </div>
+
+            <div id="fail-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #ff5f56;">
+                    <h2>💥 CRASH! Vision Obscured</h2>
+                    <p id="fail-reason">The AI couldn't see the road!</p>
+                    <p><em>Hint: Think about what filter emphasizes outlines and shapes!</em></p>
+                    <button class="btn btn-outline" onclick="location.reload()" style="margin-top: 1rem;">Rewind Simulation</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/level6.js"></script>
+</body>
+</html>

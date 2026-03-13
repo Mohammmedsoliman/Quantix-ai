@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Neural Pathways</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/modern-map.css">
+</head>
+<body class="map-body">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+
+    <nav class="map-nav glass-panel">
+        <div class="logo">Quantix<span class="gradient-text">Ai</span></div>
+        <div class="player-stats">
+            <div class="stat-pill">
+                <span>🧠 Rank: <strong id="user-rank" class="text-cyan">Data Novice</strong></span>            </div>
+            <div class="stat-pill">
+                <span>⭐ Mastery: <strong id="user-mastery">0/90</strong></span>
+            </div>
+        </div>
+        <button id="logout-btn" class="btn btn-glass">Sign Out</button>
+    </nav>
+
+    <main class="map-container">
+        <header class="map-header">
+            <h1 class="mega-title">Neural <span class="gradient-text">Pathways</span></h1>
+            <p class="subtitle">Select your mission. Train the models. Master the grid.</p>
+        </header>
+
+        <div id="worlds-container"></div>
+    </main>
+    <body>
+
+    <div id="mobile-restriction" class="mobile-overlay">
+        <div class="restriction-content">
+            <div style="font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);">💻</div>
+            <h2 style="color: #06b6d4; margin-top: 0; font-size: 1.8rem;">Screen Too Small</h2>
+            <p style="color: #94a3b8; line-height: 1.6; font-size: 1rem;">
+                The <strong>Neural Grid</strong> requires a larger workspace for optimal performance. <br><br>
+                Please access your missions from a <strong>Tablet, Laptop, or Desktop</strong> computer.
+            </p>
+        </div>
+    </div>
+
+
+    <script type="module" src="../js/levels.js"></script>
+</body>
+</html>

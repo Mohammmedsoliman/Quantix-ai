@@ -1,0 +1,329 @@
+:root {
+    --bg-dark: #0f172a;
+    --panel-bg: #1e293b;
+    --text-main: #f8fafc;
+    --accent-primary: #8b5cf6;
+    --accent-secondary: #06b6d4;
+    --success: #27c93f;
+    --warning: #ffbd2e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { background-color: var(--bg-dark); color: var(--text-main); height: 100vh; overflow: hidden; }
+
+.game-container { display: flex; height: 100vh; }
+
+/* Sidebar */
+/* Sidebar */
+.sidebar {
+    width: 320px; 
+    background-color: var(--panel-bg); 
+    padding: 2.5rem 2rem;
+    display: flex; 
+    flex-direction: column; 
+    z-index: 10;
+    border-right: 1px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+    /* Add this line to fix the missing button: */
+    overflow-y: auto; 
+}
+
+.level-badge {
+    background: rgba(6, 182, 212, 0.1); color: var(--accent-secondary);
+    padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem;
+    font-weight: bold; width: fit-content; margin-bottom: 1rem;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.sidebar h3 { font-size: 1.8rem; margin-bottom: 1rem; color: #fff; }
+.sidebar p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; }
+
+.status-box {
+    background: #0f172a; padding: 1.5rem; border-radius: 12px;
+    margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.05);
+}
+
+.highlight { color: var(--accent-secondary); font-weight: bold; }
+
+.training-metrics {
+    margin-top: 1rem; padding-top: 1rem;
+    border-top: 1px dashed rgba(255,255,255,0.1);
+    font-family: 'Courier New', Courier, monospace; color: var(--success);
+}
+
+.message { margin-top: 15px; font-weight: bold; font-size: 0.9rem !important; margin-bottom: 0 !important;}
+.message.pending { color: var(--warning); }
+.message.success { color: var(--success); }
+
+.btn {
+    padding: 1.2rem; border-radius: 8px; font-weight: bold; cursor: pointer;
+    border: none; text-transform: uppercase; transition: all 0.3s ease; letter-spacing: 1px;
+}
+.btn-primary { background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white; }
+.btn-primary:disabled { background: #334155; color: #64748b; cursor: not-allowed; }
+.btn-primary:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(6, 182, 212, 0.4); }
+
+/* Canvas & Blueprint Grid */
+.canvas-area {
+    flex-grow: 1; position: relative;
+    background-image: 
+        linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+#gameCanvas { display: block; width: 100%; height: 100%; }
+
+/* Modal */
+.modal {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+    display: flex; align-items: center; justify-content: center; z-index: 100;
+    opacity: 1; transition: opacity 0.3s ease;
+}
+.modal.hidden { opacity: 0; pointer-events: none; }
+
+.modal-content {
+    background: var(--panel-bg); padding: 3rem; border-radius: 15px;
+    text-align: center; max-width: 400px;
+    border: 1px solid var(--accent-primary);
+    box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+}
+.modal-content h2 { margin-bottom: 1rem; color: #fff; }
+.modal-content p { color: #cbd5e1; margin-bottom: 2rem; line-height: 1.5; }
+/* IDE Layout */
+.ide-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #0d1117; /* GitHub Dark theme vibe */
+}
+
+.editor-header {
+    background: #161b22;
+    padding: 10px 20px;
+    font-family: monospace;
+    color: #8b949e;
+    border-bottom: 1px solid #30363d;
+}
+
+#python-editor {
+    flex-grow: 1;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    padding: 20px;
+    border: none;
+    resize: none;
+    outline: none;
+    line-height: 1.5;
+}
+
+/* Simulated Terminal */
+.terminal-container {
+    height: 250px;
+    background-color: #010409;
+    border-top: 2px solid #30363d;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-header {
+    background: #161b22;
+    padding: 5px 15px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #8b949e;
+}
+
+.terminal-body {
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: #f0f6fc;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.terminal-error { color: #ff7b72; }
+.terminal-success { color: #3fb950; }
+.terminal-system { color: #a5d6ff; }
+/* --- Level Map Specific Styles --- */
+.map-body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.1), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.1), transparent 25%);
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.map-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.player-stats {
+    display: flex;
+    gap: 2rem;
+    background: rgba(0,0,0,0.3);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 20px;
+}
+
+.map-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.world-section {
+    margin-bottom: 4rem;
+}
+
+.world-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* The Grid */
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Level Cards */
+.level-card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.level-number {
+    position: absolute;
+    top: -15px;
+    left: 15px;
+    background: var(--bg-dark);
+    color: #fff;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #334155;
+}
+
+.level-card h4 {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.level-card p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    flex-grow: 1;
+    margin-bottom: 15px;
+}
+
+/* Card States */
+.level-card.completed {
+    border-color: #27c93f;
+    background: rgba(39, 201, 63, 0.05);
+}
+.level-card.completed .level-number {
+    border-color: #27c93f;
+    color: #27c93f;
+}
+
+.level-card.active {
+    border-color: #06b6d4;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+    transform: translateY(-5px);
+}
+.level-card.active .level-number {
+    border-color: #06b6d4;
+    background: #06b6d4;
+    color: #fff;
+}
+
+.level-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+.level-action {
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.completed .level-action { color: #27c93f; }
+.active .level-action { color: #06b6d4; }
+.locked .level-action { color: #64748b; }
+/* ========================================== */
+/* --- 🔙 Back Button Style --- */
+/* ========================================== */
+.btn-back-grid {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px; /* مسافة بينه وبين محتوى الليفل */
+    text-decoration: none;
+}
+
+.btn-back-grid:hover {
+    background: rgba(6, 182, 212, 0.1); /* لون سماوي خفيف */
+    color: #06b6d4;
+    border-color: #06b6d4;
+    transform: translateX(-4px); /* بيتحرك سِنة للشمال كنوع من التوجيه */
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+}
+
+.btn-back-grid svg {
+    transition: transform 0.3s;
+}
+
+.btn-back-grid:hover svg {
+    transform: translateX(-2px);
+}

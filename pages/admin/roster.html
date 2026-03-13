@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Student Roster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/dashboard-style.css">
+    <style>
+        /* ستايل خاص بشبكة كروت الطلاب (Grid) */
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .student-card {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.2s;
+        }
+        .student-card:hover {
+            transform: translateY(-5px);
+            border-color: #06b6d4;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .student-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .student-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #334155, #1e293b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid #06b6d4;
+        }
+        .student-name { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.2rem; }
+        .student-uid { font-size: 0.75rem; color: #64748b; font-family: monospace; }
+        .card-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .stat-item p { font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.2rem; }
+        .stat-item h4 { font-size: 1.2rem; color: #fff; }
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+        .card-actions button { flex: 1; padding: 0.5rem; font-size: 0.85rem; }
+        
+        /* تظبيط القائمة الجانبية (Navigation) */
+        .nav-menu a { text-decoration: none; color: inherit; display: block; width: 100%; }
+        .nav-menu li { cursor: pointer; }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+        
+        <aside class="side-nav glass-panel">
+            <div class="logo-container">
+                <div class="logo">Quantix<span class="gradient-text">Ai</span></div>
+                <span class="badge">Instructor Mode</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li onclick="location.href='dashboard.html'">📊 Overview</li>
+                <li class="active">👥 Student Roster</li>
+                <li onclick="location.href='curriculum.html'">🧠 Curriculum Manager</li>
+                <li onclick="location.href='settings.html'">⚙️ Organization Settings</li>
+            </ul>
+
+        <div class="user-profile" style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: auto;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="avatar">👨‍🏫</div>
+                    <div>
+                        <h4 id="admin-name-display">Loading...</h4>
+                        <p class="text-muted">Lead Instructor</p>
+                    </div>
+                </div>
+                <button id="admin-logout-btn" style="background: rgba(255, 95, 86, 0.1); border: 1px solid #ff5f56; color: #ff5f56; border-radius: 8px; width: 35px; height: 35px; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.3s;" title="Sign Out" onmouseover="this.style.background='#ff5f56'; this.style.color='#fff';" onmouseout="this.style.background='rgba(255, 95, 86, 0.1)'; this.style.color='#ff5f56';">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="top-bar">
+                <div>
+                    <h1 class="page-title">Student Roster</h1>
+                    <p class="subtitle">Manage all <strong class="text-cyan">QuantixAi</strong> registered agents.</p>
+                </div>
+                <div class="actions">
+                    <input type="text" id="search-roster" class="search-bar" placeholder="Search by name or UID...">
+                    <button class="btn-primary">+ Add Student</button>
+                </div>
+            </header>
+
+            <div class="roster-grid" id="roster-container">
+                <div class="glass-panel" style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                    Loading student database...
+                </div>
+            </div>
+
+        </main>
+    </div>
+    
+
+    <script type="module" src="../../js/admin/roster.js"></script>
+</body>
+</html>

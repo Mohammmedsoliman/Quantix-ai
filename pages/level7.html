@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 7: The Language Decoder</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: rgba(244, 63, 94, 0.1); color: #f43f5e; border-color: #f43f5e;">Level 07 (NLP)</div>
+            <h3>The Language Decoder</h3>
+            <p>Your task is to build an AI that reads customer reviews and detects if they are Positive or Negative.</p>
+            <p><strong>Remember:</strong> AI cannot read English! You must break the sentences into pieces (Tokens) and translate them into math (Embeddings) before feeding them to the AI.</p>
+            
+            <div class="status-box">
+                <p>Pipeline: <span id="connection-count" class="highlight">Incomplete</span></p>
+                <div class="training-metrics" id="metrics-panel" style="display: none;">
+                    <p>Processing: <span id="epoch-count">Review 0</span>/50</p>
+                    <p>Accuracy: <span id="accuracy-score">0%</span></p>
+                    <p>Status: <span id="loss-score">Waiting...</span></p>
+                </div>
+                <p id="system-message" class="message pending">Awaiting NLP pipeline...</p>
+            </div>
+
+            <button id="train-btn" class="btn btn-primary" disabled>Analyze Text</button>
+        </aside>
+
+        <main class="canvas-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div id="success-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #27c93f;">
+                    <h2>🗣️ AI Comprehension Achieved!</h2>
+                    <p>Excellent! You tokenized the text and converted the words into number vectors. The AI successfully learned to detect sarcasm and emotion!</p>
+                    <button class="btn btn-primary" onclick="location.href='level8.html'">Proceed to level 8</button>
+                </div>
+            </div>
+
+            <div id="fail-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #ff5f56;">
+                    <h2>💥 FATAL ERROR</h2>
+                    <p id="fail-reason" style="font-family: monospace; color: #ffbd2e; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px;">TypeError: Expected Float, got String.</p>
+                    <p><em>Hint: You can't feed raw words directly into the AI. You need to process them into numbers first!</em></p>
+                    <button class="btn btn-outline" onclick="location.reload()" style="margin-top: 1rem;">Debug Code</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/level7.js"></script>
+</body>
+</html>

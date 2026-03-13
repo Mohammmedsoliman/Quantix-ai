@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 13: Vision in Code</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar" style="width: 400px; overflow-y: auto;">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: rgba(39, 201, 63, 0.1); color: #27c93f; border-color: #27c93f;">Level 13 (CV Code)</div>
+            <h3>Code the Matrix</h3>
+            <p>Your self-driving car needs to recognize Stop Signs. You can't just use standard Dense layers because they destroy the 2D shape of the image.</p>
+            
+            <div class="target-architecture" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="color: #06b6d4; margin-bottom: 10px;">Computer Vision Pipeline</h4>
+                <ul style="text-align: left; margin-left: 20px; color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;">
+                    <li>Add a <strong>Conv2D</strong> layer with <strong>32</strong> filters, a <strong>(3,3)</strong> kernel, and <strong>'relu'</strong> activation.</li>
+                    <li>Add a <strong>MaxPooling2D</strong> layer with a <strong>(2,2)</strong> pool size to shrink the image and save memory.</li>
+                    <li>Add a <strong>Flatten</strong> layer to convert the 2D image into a 1D line of code for the final Dense layer.</li>
+                </ul>
+            </div>
+            
+            <div class="status-box">
+                <p>Status: <span id="compiler-status" class="highlight">Awaiting CV Pipeline...</span></p>
+            </div>
+
+            <button id="run-code-btn" class="btn btn-primary">Compile Vision Model</button>
+        </aside>
+
+        <main class="ide-area">
+            <div class="editor-header">
+                <span>🐍 vision_model.py</span>
+            </div>
+            <textarea id="python-editor" spellcheck="false">
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten
+
+model = Sequential()
+
+# 1. Add the Convolutional Layer (32 filters, 3x3 kernel, relu)
+model.add()
+
+# 2. Add the Max Pooling Layer (2x2 pool size)
+model.add()
+
+# 3. Flatten the 2D image into 1D
+model.add()
+
+# Final output layer (Stop Sign vs Speed Limit Sign)
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+            </textarea>
+            
+            <div class="terminal-container">
+                <div class="terminal-header">Terminal</div>
+                <div id="terminal-output" class="terminal-body">
+                    <p>> Loading image dataset...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/level13.js"></script>
+</body>
+</html>

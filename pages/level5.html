@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 5: The Anomaly Detector</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge">Level 05 (Boss)</div>
+            <h3>Feature Engineering</h3>
+            <p>Your network is under attack! You need to train an AI dashboard to detect malicious traffic.</p>
+            <p><strong>Warning:</strong> Not all data is useful. If you connect irrelevant features (noise), your AI will trigger false alarms. Connect ONLY the relevant data to the Hidden Layer.</p>
+            
+            <div class="status-box">
+                <p>Features Wired: <span id="connection-count" class="highlight">0</span></p>
+                <div class="training-metrics" id="metrics-panel" style="display: none;">
+                    <p>Epoch: <span id="epoch-count">0</span>/50</p>
+                    <p>Accuracy: <span id="accuracy-score">0%</span></p>
+                    <p>False Alarms: <span id="loss-score">High</span></p>
+                </div>
+                <p id="system-message" class="message pending">Select your features...</p>
+            </div>
+
+            <button id="train-btn" class="btn btn-primary" disabled>Deploy Defense</button>
+        </aside>
+
+        <main class="canvas-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div id="success-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #27c93f;">
+                    <h2>🛡️ Threat Neutralized!</h2>
+                    <p>Perfect Feature Selection! Your AI accurately detected the network anomalies without getting distracted by background noise.</p>
+                    <button class="btn btn-primary" onclick="location.href='level6.html'">Proceed to Level 6</button>
+                </div>
+            </div>
+
+            <div id="fail-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #ff5f56;">
+                    <h2>💥 System Compromised!</h2>
+                    <p>Your model triggered too many false alarms because it was looking at irrelevant data (like Server Temperature).</p>
+                    <p><em>Hint: Disconnect the noisy data inputs and only use data related to network traffic!</em></p>
+                    <button class="btn btn-outline" onclick="location.reload()" style="margin-top: 1rem;">Reboot System</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/level5.js"></script>
+</body>
+</html>

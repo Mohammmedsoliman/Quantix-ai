@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 15: The Sequence</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar" style="width: 400px; overflow-y: auto;">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; border-color: #8b5cf6;">Level 15 (Time-Series Code)</div>
+            <h3>Coding the Sequence</h3>
+            <p>You are building a stock market predictor. You have arrays of data containing the last 30 days of prices. You need to predict Day 31.</p>
+            
+            <div class="target-architecture" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="color: #06b6d4; margin-bottom: 10px;">RNN Architecture</h4>
+                <ul style="text-align: left; margin-left: 20px; color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;">
+                    <li>Add an <strong>LSTM</strong> layer with <strong>50</strong> memory units.</li>
+                    <li>Because it's the first layer, you must tell it the shape of the data! Set <strong>input_shape=(30, 1)</strong> (30 days, 1 price per day).</li>
+                    <li>Add a final <strong>Dense</strong> layer with <strong>1</strong> unit to output the final predicted price.</li>
+                </ul>
+            </div>
+            
+            <div class="status-box">
+                <p>Status: <span id="compiler-status" class="highlight">Awaiting LSTM Code...</span></p>
+            </div>
+
+            <button id="run-code-btn" class="btn btn-primary">Run Forecaster</button>
+        </aside>
+
+        <main class="ide-area">
+            <div class="editor-header">
+                <span>🐍 stock_predictor.py</span>
+            </div>
+            <textarea id="python-editor" spellcheck="false">
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, LSTM
+
+model = Sequential()
+
+# 1. Add the LSTM Layer (50 units, input_shape=(30, 1))
+model.add()
+
+# 2. Add the Output Layer (1 unit for the predicted price)
+model.add()
+
+# Notice we use 'mse' (Mean Squared Error) because we are predicting a continuous number, not a category!
+model.compile(optimizer='adam', loss='mse')
+            </textarea>
+            
+            <div class="terminal-container">
+                <div class="terminal-header">Terminal</div>
+                <div id="terminal-output" class="terminal-body">
+                    <p>> Connecting to historical market data...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script  type="module" src="../js/level15.js"></script>
+</body>
+</html>

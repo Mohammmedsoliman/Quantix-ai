@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 11: The Syntax Bridge</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar" style="width: 400px; overflow-y: auto;">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: rgba(255, 212, 59, 0.1); color: #ffd43b; border-color: #ffd43b;">Level 11 (Code)</div>
+            <h3>The Syntax Bridge</h3>
+            <p>You know how to build architectures visually. Now, let's write the <strong>Python</strong> code to do it.</p>
+            
+            <div class="target-architecture" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                <h4 style="color: #06b6d4; margin-bottom: 10px;">Target Architecture</h4>
+                <p>1. Initialize a <strong>Sequential</strong> model.</p>
+                <p>2. Add a <strong>Dense</strong> hidden layer with <strong>16</strong> neurons and <strong>'relu'</strong> activation.</p>
+                <p>3. Add a <strong>Dense</strong> output layer with <strong>1</strong> neuron and <strong>'sigmoid'</strong> activation.</p>
+            </div>
+            
+            <div class="status-box">
+                <p>Status: <span id="compiler-status" class="highlight">Awaiting Code...</span></p>
+            </div>
+
+            <button id="run-code-btn" class="btn btn-primary">Run model.py</button>
+        </aside>
+
+        <main class="ide-area">
+            <div class="editor-header">
+                <span>🐍 model.py</span>
+            </div>
+            <textarea id="python-editor" spellcheck="false">
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+# 1. Initialize the model
+model = 
+
+# 2. Add the Hidden Layer (16 neurons, relu)
+model.add()
+
+# 3. Add the Output Layer (1 neuron, sigmoid)
+
+
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, epochs=10)
+            </textarea>
+            
+            <div class="terminal-container">
+                <div class="terminal-header">Terminal</div>
+                <div id="terminal-output" class="terminal-body">
+                    <p>> Ready for execution.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script  type="module" src="../js/level11.js"></script>
+</body>
+</html>

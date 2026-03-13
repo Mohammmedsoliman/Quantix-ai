@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Learn AI by Playing</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Quantix<span>Ai</span></div>
+        <ul class="nav-links">
+            <li><a href="#features">Game Features</a></li>
+            <li><a href="pages/auth/login.html">For Teachers</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <button class="btn btn-outline" onclick="location.href='pages/auth/login.html'">Teacher Login</button>
+            <button class="btn btn-primary" onclick="location.href='pages/auth/login.html'">Start Playing</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <canvas id="neural-canvas"></canvas>
+        <div class="hero-content">
+            <h1><span id="typewriter"></span><span class="cursor">|</span></h1>            <p>Dive into interactive puzzles, train real neural networks, and level up your skills. The ultimate AI playground for high schoolers.</p>
+            <div class="ai-terminal">
+    <div class="terminal-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="terminal-title">model_training.py</span>
+    </div>
+    <div class="terminal-body">
+        <p>> Initializing Quantix Engine...</p>
+        <p>> Loading dataset: [██████████] 100%</p>
+        <p class="training-text">> Epoch 1/50: Loss 0.842 - Accuracy 62%</p>
+    </div>
+</div>
+            <div class="cta-group">
+                <button class="btn btn-primary btn-large">Enter the Grid</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <div class="feature-card">
+            <div class="icon">🎮</div>
+            <h3>Puzzle-Based Learning</h3>
+            <p>No boring lectures. Learn data collection and model training by completing interactive missions.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🧠</div>
+            <h3>Visual Neural Networks</h3>
+            <p>Drag, drop, and connect nodes to build your own AI models right in the browser.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📊</div>
+            <h3>Teacher Dashboard</h3>
+            <p>Monitor student progress, identify bottlenecks, and assign specific skill trees with ease.</p>
+        </div>
+    </section>
+    <section id="how-it-works" class="how-it-works">
+        <h2 class="section-title">How QuantixAi <span class="highlight">Works</span></h2>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <h3>Play Puzzles</h3>
+                <p>Start by playing intuitive games that secretly teach you core AI concepts like data gathering and pattern recognition.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <h3>Train Models</h3>
+                <p>Move into the lab. Connect visual nodes to build and train your first neural network on the data you just collected.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <h3>Beat the Boss</h3>
+                <p>Deploy your trained AI to solve a final, complex challenge. Earn badges, rank up on the leaderboard, and unlock new skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" class="curriculum">
+        <h2 class="section-title">Explore the <span class="highlight">Skill Tree</span></h2>
+        <div class="curriculum-grid">
+            <div class="course-card">
+                <div class="course-header machine-learning">Level 1</div>
+                <h3>Machine Learning Basics</h3>
+                <p>Understand inputs, outputs, and weights. Train a virtual car to drive itself around a track.</p>
+                <ul class="course-skills">
+                    <li>Data Cleaning</li>
+                    <li>Linear Regression</li>
+                </ul>
+            </div>
+            <div class="course-card">
+                <div class="course-header computer-vision">Level 2</div>
+                <h3>Computer Vision</h3>
+                <p>Teach your AI to "see." Build a facial recognition system to unlock the vault.</p>
+                <ul class="course-skills">
+                    <li>Image Datasets</li>
+                    <li>Convolutional Networks</li>
+                </ul>
+            </div>
+            <div class="course-card">
+                <div class="course-header nlp">Level 3</div>
+                <h3>Natural Language</h3>
+                <p>Build a chatbot that can detect sarcasm and translate secret alien languages.</p>
+                <ul class="course-skills">
+                    <li>Tokenization</li>
+                    <li>Sentiment Analysis</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">Quantix<span>Ai</span></div>
+            <p>Empowering the next generation of AI engineers through play.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; All rights reserved For the CTO of the Platform 'Mohamed Soliman'.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

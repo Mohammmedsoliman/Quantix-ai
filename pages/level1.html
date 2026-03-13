@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 1: Neural Architect</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge">Level 01</div>
+            <h3>The Neural Architect</h3>
+            <p>Connect the <strong>Data Inputs</strong> to the <strong>Output Node</strong> to build your model. Once connected, run the training sequence.</p>
+            
+            <div class="status-box">
+                <p>Connections: <span id="connection-count" class="highlight">0 / 2</span></p>
+                <div class="training-metrics" id="metrics-panel" style="display: none;">
+                    <p>Epoch: <span id="epoch-count">0</span>/50</p>
+                    <p>Accuracy: <span id="accuracy-score">0%</span></p>
+                    <p>Loss: <span id="loss-score">1.00</span></p>
+                </div>
+                <p id="system-message" class="message pending">Awaiting architecture...</p>
+            </div>
+
+            <button id="train-btn" class="btn btn-primary" disabled>Run Training</button>
+        </aside>
+
+        <main class="canvas-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div id="success-modal" class="modal hidden">
+                <div class="modal-content">
+                    <h2>🎯 Model Trained!</h2>
+                    <p>Great job! You successfully routed the data to the output node. Your model achieved <strong>94% accuracy</strong>.</p>
+                    <button class="btn btn-primary" onclick="location.href='level2.html'">Proceed to Level 2</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 9: Reinforcement Learning</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: rgba(236, 72, 153, 0.1); color: #ec4899; border-color: #ec4899;">Level 09 (RL)</div>
+            <h3>The Reward Function</h3>
+            <p>You are training a robot to navigate a maze. It learns by trial and error.</p>
+            <p>Map the Robot's <strong>Actions</strong> to the correct <strong>Feedback Signals</strong>, then route those signals to the Agent's Brain.</p>
+            <p><em>Warning: Be careful what you reward. The AI will optimize for whatever gives it the most points!</em></p>
+            
+            <div class="status-box">
+                <p>Wiring: <span id="connection-count" class="highlight">Offline</span></p>
+                <div class="training-metrics" id="metrics-panel" style="display: none;">
+                    <p>Episode: <span id="epoch-count">0</span>/50</p>
+                    <p>Distance: <span id="accuracy-score">0m</span></p>
+                    <p>Collisions: <span id="loss-score">0</span></p>
+                </div>
+                <p id="system-message" class="message pending">Define the reward logic...</p>
+            </div>
+
+            <button id="train-btn" class="btn btn-primary" disabled>Deploy Agent</button>
+        </aside>
+
+        <main class="canvas-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div id="success-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #27c93f;">
+                    <h2>🤖 Optimal Policy Learned!</h2>
+                    <p>Perfect! You penalized collisions and rewarded forward progress. The robot quickly learned to avoid the walls and navigate the maze flawlessly.</p>
+                    <button class="btn btn-primary" onclick="location.href='level10.html'">Advance to Level 10</button>
+                </div>
+            </div>
+
+            <div id="fail-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #ff5f56;">
+                    <h2>💥 Destructive Behavior!</h2>
+                    <p id="fail-reason">The robot destroyed itself!</p>
+                    <p><em>Hint: Did you accidentally wire the "Hit Wall" action to the "Reward (+1)" node?</em></p>
+                    <button class="btn btn-outline" onclick="location.reload()" style="margin-top: 1rem;">Reset Environment</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/level9.js"></script>
+</body>
+</html>

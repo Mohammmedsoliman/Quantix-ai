@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 16: Transfer Learning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; background-color: #0f172a; color: #f8fafc; font-family: 'Outfit', sans-serif; overflow: hidden; display: flex; height: 100vh; }
+        
+        /* Sidebar Styles */
+        .sidebar { width: 350px; background: rgba(0,0,0,0.4); border-right: 1px solid rgba(255,255,255,0.05); padding: 2rem; display: flex; flex-direction: column; overflow-y: auto; }
+        .lvl-badge { background: rgba(6, 182, 212, 0.1); color: #06b6d4; padding: 5px 12px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; display: inline-block; margin-bottom: 10px; }
+        h1 { margin: 0 0 15px 0; font-size: 1.8rem; color: #f8fafc; }
+        p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
+        .rule-box { background: rgba(255, 95, 86, 0.1); border-left: 3px solid #ff5f56; padding: 15px; margin-top: 20px; border-radius: 0 8px 8px 0; }
+        
+        /* Back Button */
+        .btn-back-grid { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.05); color: #94a3b8; border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-bottom: 20px; text-decoration: none; }
+        .btn-back-grid:hover { background: rgba(6, 182, 212, 0.1); color: #06b6d4; border-color: #06b6d4; transform: translateX(-4px); box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+        
+        /* IDE Area */
+        .ide-container { flex: 1; display: flex; flex-direction: column; padding: 2rem; gap: 1rem; }
+        .editor-header { display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 10px 20px; border-radius: 8px 8px 0 0; border-bottom: 1px solid #334155; }
+        .editor-header h3 { margin: 0; font-size: 1rem; color: #cbd5e1; }
+        .btn-run { background: #10b981; color: #fff; border: none; padding: 8px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
+        .btn-run:hover { background: #059669; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+        
+        textarea { flex: 1; background: #1e293b; color: #e2e8f0; font-family: monospace; font-size: 1rem; padding: 20px; border: none; border-radius: 0 0 8px 8px; resize: none; outline: none; line-height: 1.5; }
+        
+        /* Terminal */
+        .terminal { height: 250px; background: #000; border-radius: 8px; padding: 15px; font-family: monospace; font-size: 0.9rem; overflow-y: auto; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); border: 1px solid #334155; }
+        .terminal p { margin: 5px 0; }
+        .terminal-system { color: #94a3b8; }
+        .terminal-error { color: #ff5f56; }
+        .terminal-success { color: #27c93f; font-weight: bold; }
+        .terminal-warn { color: #ffbd2e; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Return to Map
+        </button>
+
+        <span class="lvl-badge">Level 16</span>
+        <h1>The Giant's Shoulders</h1>
+        <p>Training a deep neural network from scratch takes days and millions of images. We don't have time for that.</p>
+        <p>In this mission, we will use <strong>Transfer Learning</strong>. We will load a massive pre-trained AI called <code>ResNet50</code>, freeze its brain so it doesn't forget what it knows, and add a custom layer to identify <strong>Medical X-Rays</strong>.</p>
+        
+        <div class="rule-box">
+            <strong style="color: #ff5f56;">MISSION OBJECTIVES:</strong><br><br>
+            1. Set <code>base_model.trainable = False</code> to freeze the giant's brain.<br>
+            2. Add a new <code>Dense(1, activation='sigmoid')</code> at the end to make it output a single Yes/No medical diagnosis.
+        </div>
+    </aside>
+
+    <main class="ide-container">
+        <div style="display: flex; flex-direction: column; flex: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-radius: 8px;">
+            <div class="editor-header">
+                <h3>transfer_learning.py</h3>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span id="compiler-status" style="font-size: 0.85rem; color: #94a3b8;">Ready</span>
+                    <button id="run-code-btn" class="btn-run">▶ Run Code</button>
+                </div>
+            </div>
+            <textarea id="python-editor" spellcheck="false">
+from keras.applications import ResNet50
+from keras.models import Sequential
+from keras.layers import Dense, Flatten
+
+# 1. Load the Giant (Pre-trained on millions of images)
+base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+
+# 2. FREEZE THE GIANT'S BRAIN HERE (Do not let it unlearn!)
+base_model.trainable = True # FIX THIS LINE
+
+model = Sequential()
+model.add(base_model)
+model.add(Flatten())
+
+# 3. ADD YOUR CUSTOM MEDICAL OUTPUT LAYER HERE
+# Hint: We need exactly 1 output neuron with a 'sigmoid' activation for Yes/No
+model.add(Dense(256, activation='relu'))
+# YOUR CODE HERE:
+
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+            </textarea>
+        </div>
+
+        <div class="terminal" id="terminal-output">
+            <p class="terminal-system">Quantix OS Terminal v2.4</p>
+            <p class="terminal-system">Awaiting script execution...</p>
+        </div>
+    </main>
+
+    <script type="module" src="../js/level16.js"></script>
+</body>
+</html>

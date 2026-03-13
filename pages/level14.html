@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 14: Text to Tensor</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar" style="width: 400px; overflow-y: auto;">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: rgba(244, 63, 94, 0.1); color: #f43f5e; border-color: #f43f5e;">Level 14 (NLP Code)</div>
+            <h3>Text to Tensor</h3>
+            <p>We need to build a Sentiment Analysis bot to read movie reviews. Remember: Neural Networks only speak Math, not English!</p>
+            
+            <div class="target-architecture" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="color: #06b6d4; margin-bottom: 10px;">NLP Pipeline</h4>
+                <ul style="text-align: left; margin-left: 20px; color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;">
+                    <li>Initialize the <strong>Tokenizer</strong> with <strong>num_words=5000</strong> (our vocabulary size).</li>
+                    <li>Use <strong>pad_sequences</strong> on the `sequences` variable with <strong>maxlen=50</strong> so all reviews are the same length.</li>
+                    <li>Add an <strong>Embedding</strong> layer to the model with an input dim of <strong>5000</strong>, output dim of <strong>16</strong>, and <strong>input_length=50</strong>.</li>
+                </ul>
+            </div>
+            
+            <div class="status-box">
+                <p>Status: <span id="compiler-status" class="highlight">Awaiting NLP Logic...</span></p>
+            </div>
+
+            <button id="run-code-btn" class="btn btn-primary">Compile NLP Model</button>
+        </aside>
+
+        <main class="ide-area">
+            <div class="editor-header">
+                <span>🐍 nlp_model.py</span>
+            </div>
+            <textarea id="python-editor" spellcheck="false">
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, Dense, Flatten
+
+reviews = ["This movie is amazing", "I hated this film"]
+
+# 1. Initialize the Tokenizer (5000 words max)
+tokenizer = 
+tokenizer.fit_on_texts(reviews)
+sequences = tokenizer.texts_to_sequences(reviews)
+
+# 2. Pad the sequences to a length of 50
+padded_reviews = 
+
+model = Sequential()
+
+# 3. Add the Embedding Layer (vocab 5000, 16 dimensions, length 50)
+model.add()
+
+model.add(Flatten())
+model.add(Dense(1, activation='sigmoid'))
+
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+            </textarea>
+            
+            <div class="terminal-container">
+                <div class="terminal-header">Terminal</div>
+                <div id="terminal-output" class="terminal-body">
+                    <p>> Ready to parse text data...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/level14.js"></script>
+</body>
+</html>

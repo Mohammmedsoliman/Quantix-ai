@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 8: The Memory Matrix</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; border-color: #8b5cf6;">Level 08 (Time-Series)</div>
+            <h3>The Memory Matrix</h3>
+            <p>Your task is to predict tomorrow's stock market prices based on the last 30 days of data.</p>
+            <p><strong>Warning:</strong> Standard nodes only look at the *current* moment. If you use a standard node, your AI will instantly forget yesterday's data! You must use a node capable of <strong>Memory</strong>.</p>
+            
+            <div class="status-box">
+                <p>Architecture: <span id="connection-count" class="highlight">Unstable</span></p>
+                <div class="training-metrics" id="metrics-panel" style="display: none;">
+                    <p>Day: <span id="epoch-count">0</span>/30</p>
+                    <p>Context Retention: <span id="accuracy-score">0%</span></p>
+                    <p>Prediction Error: <span id="loss-score">High</span></p>
+                </div>
+                <p id="system-message" class="message pending">Awaiting sequential pipeline...</p>
+            </div>
+
+            <button id="train-btn" class="btn btn-primary" disabled>Begin Forecasting</button>
+        </aside>
+
+        <main class="canvas-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div id="success-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #27c93f;">
+                    <h2>📈 Future Predicted!</h2>
+                    <p>Brilliant! By using the <strong>LSTM Memory Cell</strong>, your AI remembered the trend from last week and accurately predicted the market crash before it happened.</p>
+                    <button class="btn btn-primary" onclick="location.href='level9.html'">Advance to Level 9</button>
+                </div>
+            </div>
+
+            <div id="fail-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #ffbd2e;">
+                    <h2>🧠 Total Amnesia</h2>
+                    <p id="fail-reason">You used a standard Dense Layer! The AI looked at Tuesday's price, but completely forgot Monday's price. It cannot see the trend!</p>
+                    <p><em>Hint: Delete the Dense layer and route through a node designed to retain long-term memory!</em></p>
+                    <button class="btn btn-outline" onclick="location.reload()" style="margin-top: 1rem;">Rebuild Architecture</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/level8.js"></script>
+</body>
+</html>

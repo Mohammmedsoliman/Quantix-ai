@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 4: The Overfitting Trap</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge">Level 04</div>
+            <h3>The Overfitting Trap</h3>
+            <p>Your network is getting too smart for its own good. If it's too complex, it will just memorize the practice test and fail the real exam.</p>
+            <p>Route the data through a <span style="color: #f59e0b; font-weight: bold;">Dropout Node</span> to force the AI to generalize its learning.</p>
+            
+            <div class="status-box">
+                <p>Wires Connected: <span id="connection-count" class="highlight">0</span></p>
+                <div class="training-metrics" id="metrics-panel" style="display: none;">
+                    <p>Phase: <span id="phase-label" style="color: #06b6d4;">TRAINING</span></p>
+                    <p>Epoch: <span id="epoch-count">0</span>/50</p>
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 8px 0;">
+                    <p>Train Acc: <span id="train-acc">0%</span></p>
+                    <p>Test Acc: <span id="test-acc" style="color: #64748b;">Waiting...</span></p>
+                </div>
+                <p id="system-message" class="message pending">Awaiting architecture...</p>
+            </div>
+
+            <button id="train-btn" class="btn btn-primary" disabled>Run Training</button>
+        </aside>
+
+        <main class="canvas-area">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div id="success-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #27c93f;">
+                    <h2>🎯 Generalized Mastery!</h2>
+                    <p>The Dropout Node worked! Your model didn't just memorize the data; it learned the underlying patterns.</p>
+                    <p><strong>Train Acc: 88% | Test Acc: 85%</strong></p>
+                    <button class="btn btn-primary" onclick="location.href='level5.html'">Proceed to Level 5</button>
+                </div>
+            </div>
+
+            <div id="fail-modal" class="modal hidden">
+                <div class="modal-content" style="border-color: #ff5f56;">
+                    <h2>🚨 Overfitting Detected!</h2>
+                    <p>Your model memorized the practice data perfectly, but failed completely on unseen data!</p>
+                    <p><strong>Train Acc: 99% | Test Acc: 38%</strong></p>
+                    <p><em>Hint: Route through the Dropout Node to prevent memorization!</em></p>
+                    <button class="btn btn-outline" onclick="location.reload()" style="margin-top: 1rem;">Try Again</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/level4.js"></script>
+</body>
+</html>

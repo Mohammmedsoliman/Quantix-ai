@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantixAi | Level 12: The Optimizer</title>
+    <link rel="stylesheet" href="../css/game-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <aside class="sidebar" style="width: 400px; overflow-y: auto;">
+            <button class="btn-back-grid" onclick="window.location.href='levels.html'">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+    </svg>
+    Return to Map
+</button>
+            <div class="level-badge" style="background: rgba(255, 212, 59, 0.1); color: #ffd43b; border-color: #ffd43b;">Level 12 (Code)</div>
+            <h3>Hyperparameter Tuning</h3>
+            <p>Your AI is built, but its learning settings are totally messed up. It's crashing during training.</p>
+            
+            <div class="target-architecture" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="color: #06b6d4; margin-bottom: 10px;">Mission Objectives</h4>
+                <ul style="text-align: left; margin-left: 20px; color: #cbd5e1; font-size: 0.95rem;">
+                    <li>Set <strong>learning_rate</strong> low enough to be stable (e.g., 0.001), but not so low that it takes forever.</li>
+                    <li>Set <strong>epochs</strong> high enough to reach 90% accuracy (e.g., 50).</li>
+                    <li>Set <strong>batch_size</strong> to a standard power of 2 (e.g., 32).</li>
+                </ul>
+            </div>
+            
+            <div class="status-box">
+                <p>Status: <span id="compiler-status" class="highlight">Awaiting Code...</span></p>
+            </div>
+
+            <button id="run-code-btn" class="btn btn-primary">Compile & Train</button>
+        </aside>
+
+        <main class="ide-area">
+            <div class="editor-header">
+                <span>🐍 train.py</span>
+            </div>
+            <textarea id="python-editor" spellcheck="false">
+from tensorflow.keras.optimizers import Adam
+
+# --- FIX THESE HYPERPARAMETERS ---
+learning_rate = 1.5   # Currently WAY too high!
+epochs = 2            # Not enough time to learn!
+batch_size = 3        # Weird batch size!
+# ---------------------------------
+
+optimizer = Adam(learning_rate=learning_rate)
+model.compile(optimizer=optimizer, loss='mse', metrics=['accuracy'])
+
+print("Starting training...")
+history = model.fit(
+    X_train, 
+    y_train, 
+    epochs=epochs, 
+    batch_size=batch_size
+)
+            </textarea>
+            
+            <div class="terminal-container">
+                <div class="terminal-header">Terminal</div>
+                <div id="terminal-output" class="terminal-body">
+                    <p>> Waiting for hyperparameters...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/level12.js"></script>
+</body>
+</html>
